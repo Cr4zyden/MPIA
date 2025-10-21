@@ -4,9 +4,9 @@
 <a href="https://www.nstu.ru/">
   <img src="https://github.com/Cr4zyden/MPIA/blob/main/images_for_readme/fpmi_full.png" alt="Университет"  height="200">
 </a>
-#
-#
-#
+## 
+## 
+## 
 
 Репозиторий для хранения и управления лабораторными работами в рамках курса "Методы построения и анализа алгоритмов".
 
