@@ -1,6 +1,5 @@
-<h1 align="center">Methods for constructing and analyzing algorithms </h>
+<h1 align="center">Лабораторные работы по курсу "Методы построения и анализа алгоритмов</h>
 
-# Лабораторные работы по курсу "Методы построения и анализа алгоритмов"
 
 <a href="https://www.nstu.ru/">
   <img src="https://github.com/Cr4zyden/MPIA/blob/main/images_for_readme/fpmi_full.png" alt="Университет"  height="200">
