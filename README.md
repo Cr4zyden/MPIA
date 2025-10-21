@@ -1,6 +1,4 @@
-<h1 align="center">MPIA </h>
-
-# "Блатная бригада". 
+<h1 align="center">Methods for constructing and analyzing algorithms </h>
 
 # Лабораторные работы по курсу "Методы построения и анализа алгоритмов"
 
