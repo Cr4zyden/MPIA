@@ -4,8 +4,8 @@
 
 # Лабораторные работы по курсу "Методы построения и анализа алгоритмов"
 
-[![Университет](https://img.shields.io/badge/University-Your%20University%20Name-blue)](https://your-university-link.edu)
-[![Факультет](https://img.shields.io/badge/Course-Algorithm%20Design%20%26%20Analysis-orange)](.)
+[![Университет](https://github.com/Cr4zyden/MPIA/blob/main/images_for_readme/Логотип_НГТУ_НЭТИ.png)](https://www.nstu.ru/)
+[![Факультет](https://github.com/Cr4zyden/MPIA/blob/main/images_for_readme/fpmi_full.png)](.)
 
 Репозиторий для хранения и управления лабораторными работами в рамках курса "Методы построения и анализа алгоритмов".
 
