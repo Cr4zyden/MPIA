@@ -5,7 +5,7 @@
 
 
 <p align="center">
-<img  src="blob:https://web.telegram.org/93f3d0b3-36d7-4bb3-bb47-c654554ad5fd"  width="600"> </p>
+<img  src="https://github.com/Cr4zyden/MPIA/blob/main/images_for_readme/4bb55e2a-6ef0-4f96-ba0f-ddaba36a41a8.jpg"  width="600"> </p>
 
 
 # Python код
