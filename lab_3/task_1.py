@@ -155,8 +155,6 @@ def main():
     print(f"Dynamic Programming LCS: [результат длиной {len(result_dp)}], Time: {dp_time:.6f} seconds")
     print(f"LCS: '{result_dp[:50]}...'")  # Показываем только первые 50 символов
     
-    # Тест 4: Крайние случаи
-    #print("\nТест 4: Крайние случаи")
     test_cases = [
         ("", ""),
         ("", "qwer"),
@@ -177,3 +175,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
