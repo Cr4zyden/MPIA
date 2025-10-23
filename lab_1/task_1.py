@@ -22,7 +22,7 @@ def measure_time(func):
 
 # === Основной бенчмарк ===
 def main():
-    print("📊 BENCHMARK: ALL DATA STRUCTURES")
+    print(" BENCHMARK: ALL DATA STRUCTURES")
     print("=" * 160)
 
     # Значения N
@@ -152,7 +152,7 @@ def main():
     print("   - обход: O(N)")
     print("   - поиск: O(1) среднее")
     print()
-    print("✅ Выводы:")
+    print("Выводы:")
     print("   - list: append быстро, insert(0) медленно при больших N.")
     print("   - deque: insert(0) и append — оба O(1), но поиск всё ещё O(N).")
     print("   - set: вставка и поиск — O(log n), эффективнее list при поиске.")
