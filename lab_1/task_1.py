@@ -22,8 +22,6 @@ def measure_time(func):
 
 # === Основной бенчмарк ===
 def main():
-    print("BENCHMARK: ALL DATA STRUCTURES")
-    print("=" * 80)
 
     # Значения N
     N_VALUES = [10, 100, 1000, 10000, 100000]
