@@ -1,4 +1,6 @@
 import heapq
+import random
+import time
 
 def edges_to_matrix(edges):
     if not edges:
@@ -127,7 +129,6 @@ def cycles_equal(cycle1, cycle2):
         return True
 
     n = len(cycle1)
-    # Генерируем все возможные сдвиги и их реверсы
     rotations = []
     for i in range(n):
         rotated = cycle1[i:] + cycle1[:i]
@@ -151,6 +152,21 @@ def route_weight(route, edges):
         total += graph[u][v]
     total += graph[route[-1]][route[0]]  # замыкание
     return total
+
+def generate_random_complete_graph(n, min_weight=1.0, max_weight=10.0):
+    """Генерирует полный неориентированный граф с n вершинами"""
+    edges = []
+    for i in range(n):
+        for j in range(i+1, n):
+            weight = round(random.uniform(min_weight, max_weight), 1)
+            edges.append([i, j, weight])
+    return edges
+
+def measure_time(func, *args):
+    start = time.perf_counter()
+    result = func(*args)
+    end = time.perf_counter()
+    return result, end - start
 
 # --- Тесты ---
 if __name__ == "__main__":
@@ -220,3 +236,23 @@ if __name__ == "__main__":
     print("✓ Six vertices")
 
     print("\n✅ Все тесты пройдены для метода ветвей и границ!")
+
+    # --- Замер времени на случайных графах ---
+    print("\n" + "="*60)
+    print("ЗАМЕР ВРЕМЕНИ РАБОТЫ АЛГОРИТМОВ")
+    print("="*60)
+
+    for size in [3, 4, 5, 6, 7, 8, 9, 10]:
+        print(f"\n--- Граф из {size} вершин ---")
+        g = generate_random_complete_graph(size)
+
+        # Полный перебор — можно вызвать, если скопировать функцию
+        # Но лучше запустить a_complete_bust.py отдельно
+        print("Полный перебор: см. файл a_complete_bust.py")
+
+        # Метод ветвей и границ
+        result_bb, time_bb = measure_time(tsp_branch_and_bound, g)
+        weight_bb = route_weight(result_bb, g) if result_bb else 0.0
+        print(f"Ветви и границы: маршрут={result_bb}, вес={weight_bb:.1f}, время={time_bb:.4f} сек")
+
+    print("\n💡 Для сравнения с полным перебором — запустите a_complete_bust.py")
