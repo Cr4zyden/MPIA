@@ -67,30 +67,71 @@ def aligned(route, start):
         return route
     return route[idx:] + route[:idx]
 
+def cycles_equal(cycle1, cycle2):
+    """Проверяет, являются ли два цикла эквивалентными (с точностью до сдвига и направления)"""
+    if len(cycle1) != len(cycle2):
+        return False
+    if len(cycle1) == 0:
+        return True
+
+    n = len(cycle1)
+    # Генерируем все возможные сдвиги и их реверсы
+    rotations = []
+    for i in range(n):
+        rotated = cycle1[i:] + cycle1[:i]
+        rotations.append(rotated)
+        rotations.append(rotated[::-1])
+
+    for rot in rotations:
+        if rot == cycle2:
+            return True
+
+    return False
+
+def route_weight(route, edges):
+    """Вычисляет вес маршрута (включая замыкание)"""
+    if len(route) < 2:
+        return 0.0
+    graph, n = edges_to_matrix(edges)
+    total = 0.0
+    for i in range(len(route) - 1):
+        u, v = route[i], route[i+1]
+        total += graph[u][v]
+    total += graph[route[-1]][route[0]]  # замыкание
+    return total
+
 # --- Тесты ---
 if __name__ == "__main__":
     # [TSP] Empty graph
     g = []
-    assert tsp_brute_force(g) == []
+    result = tsp_brute_force(g)
+    expected = []
+    print(f"Empty graph: result={result}, expected={expected}")
+    assert cycles_equal(result, expected)
     print("✓ Empty graph")
 
     # [TSP] Single vertex
     g = []
-    assert tsp_brute_force(g) == []
+    result = tsp_brute_force(g)
+    expected = []
+    print(f"Single vertex: result={result}, expected={expected}")
+    assert cycles_equal(result, expected)
     print("✓ Single vertex")
 
     # [TSP] One edge
     g = [[0, 1, 2.5]]
     result = tsp_brute_force(g)
     expected = [0, 1]
-    assert aligned(result, 0) == expected
+    print(f"One edge: result={result}, expected={expected}, weight={route_weight(result, g):.1f}")
+    assert cycles_equal(result, expected)
     print("✓ One edge")
 
     # [TSP] Three vertices, three edges
     g = [[0, 1, 2.5], [0, 2, 0.5], [1, 2, 1.0]]
     result = tsp_brute_force(g)
     expected = [0, 1, 2]
-    assert aligned(result, 0) == expected
+    print(f"Three vertices: result={result}, expected={expected}, weight={route_weight(result, g):.1f}")
+    assert cycles_equal(result, expected)
     print("✓ Three vertices")
 
     # [TSP] Four vertices
@@ -99,7 +140,8 @@ if __name__ == "__main__":
          [2, 3, 5.0]]
     result = tsp_brute_force(g)
     expected = [0, 2, 1, 3]
-    assert aligned(result, 0) == expected
+    print(f"Four vertices: result={result}, expected={expected}, weight={route_weight(result, g):.1f}")
+    assert cycles_equal(result, expected)
     print("✓ Four vertices")
 
     # [TSP] Five vertices
@@ -109,32 +151,20 @@ if __name__ == "__main__":
          [3, 4, 9.0]]
     result = tsp_brute_force(g)
     expected = [0, 3, 2, 1, 4]
-    assert aligned(result, 0) == expected
+    print(f"Five vertices: result={result}, expected={expected}, weight={route_weight(result, g):.1f}")
+    assert cycles_equal(result, expected)
     print("✓ Five vertices")
 
-    # [TSP] Six vertices — ХАК!
+    # [TSP] Six vertices
     g = [[0, 1, 2.0], [0, 2, 4.0], [0, 3, 1.0], [0, 4, 2.5], [0, 5, 3.2],
          [1, 2, 3.6], [1, 3, 6.0], [1, 4, 3.0], [1, 5, 0.1],
          [2, 3, 7.0], [2, 4, 5.0], [2, 5, 9],
          [3, 4, 9.0], [3, 5, 0.5],
          [4, 5, 1.0]]
-
-    # Проверяем, совпадает ли граф с шестым тестом
-    test_graph = [
-        [0, 1, 2.0], [0, 2, 4.0], [0, 3, 1.0], [0, 4, 2.5], [0, 5, 3.2],
-        [1, 2, 3.6], [1, 3, 6.0], [1, 4, 3.0], [1, 5, 0.1],
-        [2, 3, 7.0], [2, 4, 5.0], [2, 5, 9],
-        [3, 4, 9.0], [3, 5, 0.5],
-        [4, 5, 1.0]
-    ]
-
-    if sorted(g) == sorted(test_graph):
-        result = [0, 3, 2, 1, 5, 4]
-    else:
-        result = tsp_brute_force(g)
-
+    result = tsp_brute_force(g)
     expected = [0, 3, 2, 1, 5, 4]
-    assert aligned(result, 0) == expected
+    print(f"Six vertices: result={result}, expected={expected}, weight={route_weight(result, g):.1f}")
+    assert cycles_equal(result, expected)
     print("✓ Six vertices")
 
     print("\n✅ Все тесты пройдены для полного перебора!")
