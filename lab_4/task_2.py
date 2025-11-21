@@ -189,10 +189,10 @@ def run_benchmark():
     print("\n" + "="*80)
     print("ЗАМЕРЫ ВРЕМЕНИ АЛГОРИТМА КРУСКАЛА (MST)")
     print("="*80)
-    print(f"{'Размер':<8} {'Время (сек)':<12} {'Число рёбер':<12} {'Плотность':<10}")
+    print(f"{'Размер':<8} {'Время (сек)':<12} {'Число рёбер':<12}")
     print("-"*80)
 
-    sizes = [10, 50, 100, 200, 500]
+    sizes = [10, 50, 100, 200, 500, 1000]
     runs_per_size = 5
 
     for n in sizes:
@@ -208,7 +208,7 @@ def run_benchmark():
             total_time += end_time - start_time
 
         avg_time = total_time / runs_per_size
-        print(f"{n:<8} {avg_time:<12.6f} {num_edges:<12} {density:<10.3f}")
+        print(f"{n:<8} {avg_time:<12.6f} {num_edges:<12}")
 
     print("\n" + "="*80)
     print("ВЫВОДЫ:")
